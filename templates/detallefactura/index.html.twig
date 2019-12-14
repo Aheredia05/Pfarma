@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Detallefactura index{% endblock %}
+
+{% block body %}
+    <h1>Detallefactura index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Cantidad</th>
+                <th>Preciototal</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for detallefactura in detallefacturas %}
+            <tr>
+                <td>{{ detallefactura.id }}</td>
+                <td>{{ detallefactura.cantidad }}</td>
+                <td>{{ detallefactura.preciototal }}</td>
+                <td>
+                    <a href="{{ path('detallefactura_show', {'id': detallefactura.id}) }}">show</a>
+                    <a href="{{ path('detallefactura_edit', {'id': detallefactura.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('detallefactura_new') }}">Create new</a>
+{% endblock %}

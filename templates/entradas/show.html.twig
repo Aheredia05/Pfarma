@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Entradas{% endblock %}
+
+{% block body %}
+    <h1>Entradas</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entrada.id }}</td>
+            </tr>
+            <tr>
+                <th>Fecha</th>
+                <td>{{ entrada.fecha ? entrada.fecha|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Cantidad</th>
+                <td>{{ entrada.cantidad }}</td>
+            </tr>
+            <tr>
+                <th>Precio</th>
+                <td>{{ entrada.precio }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('entradas_index') }}">back to list</a>
+
+    <a href="{{ path('entradas_edit', {'id': entrada.id}) }}">edit</a>
+
+    {{ include('entradas/_delete_form.html.twig') }}
+{% endblock %}

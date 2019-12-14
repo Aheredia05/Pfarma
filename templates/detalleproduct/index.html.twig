@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Detalleproduct index{% endblock %}
+
+{% block body %}
+    <h1>Detalleproduct index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Cantidad</th>
+                <th>Precioventa</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for detalleproduct in detalleproducts %}
+            <tr>
+                <td>{{ detalleproduct.id }}</td>
+                <td>{{ detalleproduct.cantidad }}</td>
+                <td>{{ detalleproduct.precioventa }}</td>
+                <td>
+                    <a href="{{ path('detalleproduct_show', {'id': detalleproduct.id}) }}">show</a>
+                    <a href="{{ path('detalleproduct_edit', {'id': detalleproduct.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('detalleproduct_new') }}">Create new</a>
+{% endblock %}
