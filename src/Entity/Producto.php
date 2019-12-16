@@ -60,6 +60,11 @@ class Producto
      */
     private $detallefacturas;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $nombre;
+
     public function __construct()
     {
         $this->entradas = new ArrayCollection();
@@ -221,6 +226,18 @@ class Producto
                 $detallefactura->setProducto(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNombre(): ?string
+    {
+        return $this->nombre;
+    }
+
+    public function setNombre(string $nombre): self
+    {
+        $this->nombre = $nombre;
 
         return $this;
     }

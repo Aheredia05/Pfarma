@@ -12,6 +12,7 @@
                 <th>Precio</th>
                 <th>Cantidad</th>
                 <th>Foto</th>
+                <th>Nombre</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -22,6 +23,7 @@
                 <td>{{ producto.precio }}</td>
                 <td>{{ producto.cantidad }}</td>
                 <td>{{ producto.foto }}</td>
+                <td>{{ producto.nombre }}</td>
                 <td>
                     <a href="{{ path('producto_show', {'id': producto.id}) }}">show</a>
                     <a href="{{ path('producto_edit', {'id': producto.id}) }}">edit</a>
@@ -29,7 +31,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="6">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

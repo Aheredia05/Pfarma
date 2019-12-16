@@ -5,15 +5,16 @@ namespace App\Controller;
 use App\Entity\Factura;
 use App\Form\FacturaType;
 use App\Repository\FacturaRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/factura")
  */
-class FacturaController extends Controller
+class FacturaController extends AbstractController
 {
     /**
      * @Route("/", name="factura_index", methods={"GET"})
@@ -35,6 +36,10 @@ class FacturaController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // fecha
+            $factura->setUsuario($this->getUser());
+            $factura->setFecha(new \DateTime(date("Y-m-d H:i:s")));
+            //end fecha
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($factura);
             $entityManager->flush();

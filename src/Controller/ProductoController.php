@@ -35,6 +35,10 @@ class ProductoController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // fecha
+            $producto->setUser($this->getUser());
+            $producto->setDate(new \DateTime(date("Y-m-d H:i:s")));
+            //end fecha
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($producto);
             $entityManager->flush();
